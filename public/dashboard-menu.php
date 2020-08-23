@@ -283,6 +283,7 @@
             if ($result) 
             {
                 $error['add_radio'] = "<br><div class='alert alert-info'>Votre Inscription est ajoutée avec succès ...</div>";
+                header("location: dashboard.php");
             } else {
                 $error['add_radio'] = "<br><div class='alert alert-danger'>Échec de l'inscription Veuillez Réeseyer ultérierement</div>";
             }
@@ -476,40 +477,49 @@
                                         </div>
 
                                     </div>
+
+                                </div>
                                     
                                 </fieldset>
 
                                 <h3>Information du diplôme </h3>
                                 <fieldset>
+ 
+                                    <div class="form-group col-sm-6">
+                                        <div class="font-12">Serie du bacalauriat *</div>
+                                        <select class="form-control show-tick" name="serie_bac" id="serie_bac" required>
+                                            <option>-- Veuillez sélectionner un choix --</option>
+                                            <option value="Science Physique">Science Physique</option>
+                                            <option value="Science Math">Science Math</option>
+                                            <option value="Science de la vie et la térre">Science de la vie et la térre</option>
+                                            <option value="Science Technologie Eléctrique">Science Technologie éléctrique</option>
+                                            <option value="Science Technologie Méchanique">Science Technologie Méchanique</option>
+                                        </select>
+                                    </div>
 
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                        <span class="form-group form-float">
-                                            <div class="form-line">
-                                                <label class="form-label">Serie du bacalauriat *</label>
-                                                <input type="text" class="form-control" name="serie_bac" required>
-                                            </div>
-                                        </span>
-                                    </div>  
+                                    <div class="form-group col-sm-6">
+                                        <div class="font-12">Année d'obtention du bacalauriat *</div>
+                                        <select class="form-control show-tick" name="annee_bac" id="annee_bac" required>
+                                            <option>-- Veuillez sélectionner un choix --</option>
+                                            <option value="2019/2020">2019/2020</option>
+                                            <option value="2018/2019">2018/2019</option>
+                                            <option value="2017/2018">2017/2018</option>
+                                            <option value="2016/2017">2016/2017</option>
+                                        </select>
+                                    </div>
 
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                        <span class="form-group form-float">
-                                            <div class="form-line">
-                                                <label class="form-label">Année d'obtention du bacalauriant</label>
-                                                <input type="text" class="form-control" name="annee_bac" required>
-                                            </div>
-                                        </span>
-                                    </div>    
-            
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                        <span class="form-group form-float">
-                                            <div class="form-line">
-                                                <label class="form-label">Montion du bacalauriat *</label>
-                                                <input type="text" class="form-control" name="montion_bac" required>
-                                            </div>
-                                        </span>
-                                    </div>   
+                                    <div class="form-group col-sm-6">
+                                        <div class="font-12">Montion bacalauriat *</div>
+                                        <select class="form-control show-tick" name="montion_bac" id="montion_bac" required>
+                                            <option>-- Veuillez sélectionner un choix --</option>
+                                            <option value="Passable">Passable</option>
+                                            <option value="Assez-bien">Assez-bien</option>
+                                            <option value="Bien">Bien</option>
+                                            <option value="Très-bien">Très-bien</option>
+                                        </select>
+                                    </div>      
+           
 
-                                   
                                 </fieldset>
 
                                 <h3>Fichier scanées </h3>
@@ -577,7 +587,7 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
                         <div class="header">
-                            <h2>Formulaire d'inscription</h2>
+                            <h2>Situation de votre dossier d'inscription</h2>
 
                             <?php echo isset($error['add_radio']) ? $error['add_radio'] : '';?>
 
@@ -594,14 +604,12 @@
                         </div>
                         <div class="body">
 
-                            
-
                             <br>
 
                             <center>
                                 <h2 class="text-success" >Votre Inscription a était retenue, votre indentifiant d'inscription et : </h2>
                                 <br><br>
-                                <h1 style="color:red">#GHF21</h1>
+                                <h1 style="color:red">#GHF-21<?php echo $data['id']; ?></h1>
                                 <br><br>
                                 <!--h4 class="text-infos">
                                     <a> Modifier vos informations avant le dernier délais , cliqué ici ! </a>
@@ -630,17 +638,6 @@ var yas;
 function arabicValue(txt) {
     yas = txt.value;
 yas = yas.replace(/`/g, "ذ");
-yas = yas.replace(/0/g, "۰");
-yas = yas.replace(/1/g, "۱");
-yas = yas.replace(/2/g, "۲");
-yas = yas.replace(/3/g, "۳");
-yas = yas.replace(/4/g, "٤");
-yas = yas.replace(/5/g, "۵");
-yas = yas.replace(/6/g, "٦");
-yas = yas.replace(/7/g, "۷");
-yas = yas.replace(/8/g, "۸");
-yas = yas.replace(/9/g, "۹");
-yas = yas.replace(/0/g, "۰");
 yas  = yas.replace(/q/g, "ض");
 yas  = yas.replace(/w/g, "ص");
 yas  = yas.replace(/e/g, "ث");

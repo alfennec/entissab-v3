@@ -62,8 +62,7 @@ $(function () {
             return form.valid();
         },
         onFinished: function (event, currentIndex) {
-            swal("Good job!", "Submitted!", "success");
-            alert("fadoua 5anza");
+            swal("Vous venez de saisir tout les informations correctement", "Cliquez sur valider votre insciption, pour continuer !", "success");
 
            /********************************* here my work gonna be */
 
