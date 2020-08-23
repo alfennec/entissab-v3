@@ -76,7 +76,7 @@
                     </div>
                 </div>
             </div>
-            <p>Veillez patienter...</p>
+            <p>Veuillez patienter...</p>
         </div>
     </div>
     <!-- #END# Page Loader -->
@@ -163,14 +163,16 @@
             <!-- #Menu -->
             <!-- Footer -->
             <div class="legal">
+                <center>
                     <div class="copyright">
                     Tous droits réservés fso.ump.ma - &copy; 2020
                     </div>
                     <div class="version">
                         <b>Version: </b> 1.0.0
                     </div>
-                </div>
-                <!-- #Footer -->
+                </center>
+            </div>
+            <!-- #Footer -->
         </aside>
         <!-- #END# Left Sidebar -->
     </section>

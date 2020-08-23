@@ -315,7 +315,6 @@
                     <div class="card">
                         <div class="header">
                             <h2>Formulaire d'inscription</h2>
-
                             <?php echo isset($error['add_radio']) ? $error['add_radio'] : '';?>
 
                             <ul class="header-dropdown m-r--5">
@@ -579,6 +578,7 @@
                                         </center>
                                     </div>
 
+                                    
                                 </fieldset>
                             </form>
                         </div>

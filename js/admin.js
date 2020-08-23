@@ -452,6 +452,29 @@ $(function ()
     $("#btn2").click(function(){
         $(".page-loader-wrapper").fadeIn();
       });
-
-    
 });
+
+
+$(function () 
+{
+    $('form').on('btnAdd', function (e) 
+    {
+        
+        e.preventDefault();
+
+        $(".page-loader-wrapper").fadeIn();
+
+      $.ajax({
+        type: 'post',
+        url: 'post.php',
+        data: $('form').serialize(),
+        success: function () 
+        {
+          alert('form was submitted');
+        }
+      });
+
+    });
+
+  });
+  
