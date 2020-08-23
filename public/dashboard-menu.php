@@ -8,6 +8,11 @@
     {
         color: black !important;
     }
+
+    #btn2
+    {
+        display:none;
+    }
 </style>
 
 <?php include ('functions.php'); ?>
@@ -570,7 +575,7 @@
 
                                     <div class="col-sm-12">
                                         <center>
-                                            <button type="submit" name="btnAdd" class="btn bg-blue waves-effect pull-center"><h4>Valider votre inscription ici ...</h4></button>
+                                            <button type="submit" name="btnAdd" id="btn2" class="btn bg-blue waves-effect pull-center" ><h4>Valider votre inscription ici ...</h4></button>
                                         </center>
                                     </div>
 

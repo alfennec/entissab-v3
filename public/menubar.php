@@ -141,9 +141,9 @@
             <!-- #User Info -->
             <!-- Menu -->
             <div class="menu">
-                <ul class="list">
+                <ul class="list" style="height: 100px !important">
                     <li class="header">MAIN NAVIGATION</li>
-
+                    
                     <li>
                         <a href="dashboard.php">
                             <i class="material-icons">home</i>
@@ -164,7 +164,7 @@
             <!-- Footer -->
             <div class="legal">
                     <div class="copyright">
-                        Copyright &copy; 2020 <a href="http://eradroids.com/">EraDroids</a>
+                    Tous droits réservés fso.ump.ma - &copy; 2020
                     </div>
                     <div class="version">
                         <b>Version: </b> 1.0.0

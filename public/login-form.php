@@ -63,7 +63,7 @@
                     header("location: dashboard.php");
                 }else 
                 {
-                    $error['failed'] = "Votre code Massar ou date de naissance n'est pas valide !";
+                    $error['failed'] = "Votre email ou mot de passe n'est pas valide !";
                 }
             }
 

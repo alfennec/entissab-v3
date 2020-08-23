@@ -444,3 +444,14 @@ $(function () {
 
     setTimeout(function () { $('.page-loader-wrapper').fadeOut(); }, 50);
 });
+
+//==========================================================================================================================
+
+$(function () 
+{
+    $("#btn2").click(function(){
+        $(".page-loader-wrapper").fadeIn();
+      });
+
+    
+});

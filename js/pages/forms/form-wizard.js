@@ -65,9 +65,7 @@ $(function () {
             swal("Vous venez de saisir tout les informations correctement", "Cliquez sur valider votre insciption, pour continuer !", "success");
 
            /********************************* here my work gonna be */
-
-
-           
+           $("#btn2").fadeIn();
         }
     });
 
