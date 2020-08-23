@@ -2,6 +2,13 @@
 
     include_once('includes/config.php');
 
+    //?msg=1
+
+    if (isset($_GET['msg'])) 
+    {
+        $msg = $_GET['msg'];
+    } 
+
 
     // if user click Login button
     if(isset($_POST['btnLogin'])) 
@@ -75,7 +82,8 @@
                         <div class="custom-padding1">
                            Inscription pour l'année universitaire 2020/2021
                         </div>
-                        <div class="custom-padding2 col-pink"><?php echo isset($error['failed']) ? $error['failed'] : '';?></div>
+                        <div class="custom-padding2 col-pink"><?php echo isset($error['failed']) ? "<br>".$error['failed'] : '';?></div>
+                        <div class="custom-padding2 col-green"><?php echo isset($msg) ? "<br>"."Vous êtes enregistré(e) avec succès, veuillez vous connecter !" : '';?></div>
                     </center>
                     
                     <br><br><br>

@@ -72,13 +72,13 @@
                         {
                             header("location: index.php?msg=1");
                         } else {
-                            $error['failed'] = " Une erreur c'est produite lors de l'inscription, Veuillez réeseyer ultérieurement ";
+                            $error['failed'] = "<br> Une erreur c'est produite lors de l'inscription, Veuillez réeseyer ultérieurement ";
                         }
 
                        
                     }else 
                     {
-                        $error['failed'] = " Vous etes déjà inscrit sur la platforme ";
+                        $error['failed'] = "<br> Vous êtes déjà inscrit sur la platforme ";
                     }
                 }
 

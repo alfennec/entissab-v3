@@ -14,7 +14,32 @@
 
 <?php
 
+    $the_existing_ins= false;
 
+    // get data from user table
+    $sql_query = "SELECT * FROM inscription_nv WHERE id_account = ?";
+
+    $stmt = $connect->stmt_init();
+    if($stmt->prepare($sql_query)) 
+    {
+        // Bind your variables to replace the ?s
+        $stmt->bind_param('s', $data['id']);
+        // Execute query
+        $stmt->execute();
+        /* store result */
+        $stmt->store_result();
+        $num = $stmt->num_rows;
+        // Close statement object
+        $stmt->close();
+        
+        if($num != 0) 
+        {
+            $the_existing_ins = true;
+        }else 
+        {
+            $the_existing_ins = false;
+        }
+    }
      
     if(isset($_POST['btnAdd']))
     {
@@ -277,6 +302,7 @@
                 </h2>
             </div>
 
+            <?php if(!$the_existing_ins){?>
             <!-- Advanced Form Example With Validation -->
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -336,7 +362,7 @@
                                             <span class="form-group form-float">
                                                 <div class="form-line">
                                                     <label class="form-label" style="width:100%;text-align:right">* الاسم العائلي</label>
-                                                    <input type="text" class="form-control" name="nom_ar" style="" required>
+                                                    <input type="text" class="form-control" name="nom_ar" style="text-align:right" id="text1" onkeyup="arabicValue(text1)" required>
                                                 </div>
                                             </span>
                                         </div>
@@ -354,7 +380,7 @@
                                             <span class="form-group form-float">
                                                 <div class="form-line">
                                                     <label class="form-label" style="width:100%;text-align:right">* الاسم الشخصي</label>
-                                                    <input type="text" class="form-control" name="prenom_ar" style="text-align:right" required>
+                                                    <input type="text" class="form-control" name="prenom_ar" style="text-align:right" id="text2" onkeyup="arabicValue(text2)" required>
                                                 </div>
                                             </span>
                                         </div>
@@ -426,7 +452,7 @@
                                             <span class="form-group form-float">
                                                 <div class="form-line">
                                                     <label class="form-label" style="width:100%;text-align:right">* العنوان الشخصي</label>
-                                                    <input type="text" class="form-control" name="adress_ar" style="text-align:right" required>
+                                                    <input type="text" class="form-control" name="adress_ar" style="text-align:right" id="text3" onkeyup="arabicValue(text3)" required>
                                                 </div>
                                             </span>
                                         </div>
@@ -545,5 +571,133 @@
                 </div>
             </div>
             <!-- #END# Advanced Form Example With Validation -->
+            <?php }else{ ?>
+            <!-- Advanced Form Example With Validation -->
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>Formulaire d'inscription</h2>
+
+                            <?php echo isset($error['add_radio']) ? $error['add_radio'] : '';?>
+
+                            <ul class="header-dropdown m-r--5">
+                                <li class="dropdown">
+                                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                        <i class="material-icons">more_vert</i>
+                                    </a>
+                                    <ul class="dropdown-menu pull-right">
+                                        
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="body">
+
+                            
+
+                            <br>
+
+                            <center>
+                                <h2 class="text-success" >Votre Inscription a était retenue, votre indentifiant d'inscription et : </h2>
+                                <br><br>
+                                <h1 style="color:red">#GHF21</h1>
+                                <br><br>
+                                <!--h4 class="text-infos">
+                                    <a> Modifier vos informations avant le dernier délais , cliqué ici ! </a>
+                                </!--h4-->
+
+                                <br><br><br>
+
+                                <h5 class="text-danger">
+                                    <strong>N.B:</strong> Toute fausse information entraînera l'annulation de votre inscription.
+                                </h5>
+
+                            </center>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- #END# Advanced Form Example With Validation -->
+            <?php } ?>
         </div>
     </section>
+
+    <script>
+		
+var yas;
+function arabicValue(txt) {
+    yas = txt.value;
+yas = yas.replace(/`/g, "ذ");
+yas = yas.replace(/0/g, "۰");
+yas = yas.replace(/1/g, "۱");
+yas = yas.replace(/2/g, "۲");
+yas = yas.replace(/3/g, "۳");
+yas = yas.replace(/4/g, "٤");
+yas = yas.replace(/5/g, "۵");
+yas = yas.replace(/6/g, "٦");
+yas = yas.replace(/7/g, "۷");
+yas = yas.replace(/8/g, "۸");
+yas = yas.replace(/9/g, "۹");
+yas = yas.replace(/0/g, "۰");
+yas  = yas.replace(/q/g, "ض");
+yas  = yas.replace(/w/g, "ص");
+yas  = yas.replace(/e/g, "ث");
+yas  = yas.replace(/r/g, "ق");
+yas  = yas.replace(/t/g, "ف"); 
+yas  = yas.replace(/y/g, "غ");
+yas  = yas.replace(/u/g, "ع");
+yas  = yas.replace(/i/g, "ه");
+yas  = yas.replace(/o/g, "خ");
+yas  = yas.replace(/p/g, "ح");
+yas  = yas.replace(/\[/g, "ج");
+yas  = yas.replace(/\]/g, "د");
+yas  = yas.replace(/a/g, "ش");
+yas  = yas.replace(/s/g, "س");
+yas  = yas.replace(/d/g, "ي");
+yas  = yas.replace(/f/g, "ب");
+yas  = yas.replace(/g/g, "ل");
+yas  = yas.replace(/h/g, "ا");
+yas  = yas.replace(/j/g, "ت");
+yas  = yas.replace(/k/g, "ن");
+yas  = yas.replace(/l/g, "م");
+yas = yas.replace(/\;/g, "ك");
+yas  = yas.replace(/\'/g, "ط");
+yas  = yas.replace(/z/g, "ئ");
+yas  = yas.replace(/x/g, "ء");
+yas  = yas.replace(/c/g, "ؤ");
+yas  = yas.replace(/v/g, "ر");
+yas  = yas.replace(/b/g, "لا");
+yas  = yas.replace(/n/g, "ى");
+yas  = yas.replace(/m/g, "ة");
+yas  = yas.replace(/\,/g, "و");
+yas  = yas.replace(/\./g, "ز");
+yas  = yas.replace(/\//g, "ظ");
+yas  = yas.replace(/~/g, " ّ");
+yas  = yas.replace(/Q/g, "َ");
+yas  = yas.replace(/W/g, "ً");
+yas  = yas.replace(/E/g, "ُ");
+yas  = yas.replace(/R/g, "ٌ");
+yas  = yas.replace(/T/g, "لإ");
+yas  = yas.replace(/Y/g, "إ");
+yas  = yas.replace(/U/g, "‘");
+yas  = yas.replace(/I/g, "÷");
+yas  = yas.replace(/O/g, "×");
+yas  = yas.replace(/P/g, "؛");
+yas  = yas.replace(/A/g, "ِ");
+yas  = yas.replace(/S/g, "ٍ");
+yas  = yas.replace(/G/g, "لأ");
+yas  = yas.replace(/H/g, "أ");
+yas  = yas.replace(/J/g, "ـ");
+yas  = yas.replace(/K/g, "،");
+yas  = yas.replace(/L/g, "/");
+yas  = yas.replace(/Z/g, "~");
+yas  = yas.replace(/X/g, "ْ");
+yas  = yas.replace(/B/g, "لآ");
+yas  = yas.replace(/N/g, "آ");
+yas  = yas.replace(/M/g, "’");
+yas  = yas.replace(/\?/g, "؟");
+txt.value = yas;
+}
+	</script>
