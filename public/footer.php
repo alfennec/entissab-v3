@@ -52,16 +52,16 @@
             $('.dropify-image').dropify({
                 messages: {
                     default : '<center>Faites glisser et déposez le fichier ici ou cliquez ici </center>',
-                    error   : 'Ooops, something wrong appended.'
+                    error   : 'Oups, l\'ajout de l\'image a échoué.'
                 },
                 error: {
-                    'fileSize': '<center>The file size is too big broo ({{ value }} max).</center>',
-                    'minWidth': '<center>The image width is too small ({{ value }}}px min).</center>',
-                    'maxWidth': '<center>The image width is too big ({{ value }}}px max).</center>',
-                    'minHeight': '<center>The image height is too small ({{ value }}}px min).</center>',
-                    'maxHeight': '<center>The image height is too big ({{ value }}px max).</center>',
-                    'imageFormat': '<center>The image format is not allowed ({{ value }} only).</center>',
-                    'fileExtension': '<center>The file is not allowed ({{ value }} only).</center>'
+                    'fileSize': 'La taille du fichier est trop grande ({{ value }} max).',
+                    'minWidth': 'The image width is too small ({{ value }}}px min).',
+                    'maxWidth': 'The image width is too big ({{ value }}}px max).',
+                    'minHeight': 'The image height is too small ({{ value }}}px min).',
+                    'maxHeight': 'The image height is too big ({{ value }}px max).',
+                    'imageFormat': 'Le format d\'image n\'est pas autorisé ({{ value }} only).',
+                    'fileExtension': 'Le fichier n\'est pas autorisé ({{ value }} only).'
                 },
             });
 
