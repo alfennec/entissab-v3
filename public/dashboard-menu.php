@@ -76,9 +76,17 @@
         $img_bac_error = $_FILES['img_bac']['error'];
         $img_bac_type = $_FILES['img_bac']['type'];
 
+        $img_bac_v = $_FILES['img_bac_v']['name'];
+        $img_bac_v_error = $_FILES['img_bac_v']['error'];
+        $img_bac_v_type = $_FILES['img_bac_v']['type'];
+
         $img_cin = $_FILES['img_cin']['name'];
         $img_cin_error = $_FILES['img_cin']['error'];
         $img_cin_type = $_FILES['img_cin']['type'];
+
+        $img_cin_v = $_FILES['img_cin_v']['name'];
+        $img_cin_v_error = $_FILES['img_cin_v']['error'];
+        $img_cin_v_type = $_FILES['img_cin_v']['type'];
 
         $img_relever = $_FILES['img_relever']['name'];
         $img_relever_error = $_FILES['img_relever']['error'];
@@ -113,7 +121,13 @@
         $extension_bac = end(explode(".", $_FILES["img_bac"]["name"]));
 
         error_reporting(E_ERROR | E_PARSE);
+        $extension_bac_v = end(explode(".", $_FILES["img_bac_v"]["name"]));
+
+        error_reporting(E_ERROR | E_PARSE);
         $extension_cin = end(explode(".", $_FILES["img_cin"]["name"]));
+
+        error_reporting(E_ERROR | E_PARSE);
+        $extension_cin_v = end(explode(".", $_FILES["img_cin_v"]["name"]));
 
         error_reporting(E_ERROR | E_PARSE);
         $extension_relever = end(explode(".", $_FILES["img_relever"]["name"]));
@@ -139,6 +153,21 @@
                 $error['img_bac'] = " <span class='font-12'>Le type d'image doit etre en jpg, jpeg, ou bien png !</span>";
             }
 
+        //---------------- get image file extension bac v
+        if($image_error > 0) 
+        {
+            $error['img_bac_v'] = " <span class='font-12 col-red'>Vous n'avez pas insérer une images !!</span>";
+        } else if(!(($img_bac_v_type == "image/gif") ||
+                ($img_bac_v_type == "image/jpeg") ||
+                ($img_bac_v_type == "image/jpg") ||
+                ($img_bac_v_type == "image/x-png") ||
+                ($img_bac_v_type == "image/png") ||
+                ($img_bac_v_type == "image/pjpeg")) &&
+            !(in_array($extension_bac_v, $allowedExts)))
+            {
+                $error['img_bac_v'] = " <span class='font-12'>Le type d'image doit etre en jpg, jpeg, ou bien png !</span>";
+            }
+
         //---------------- get image file extension cin
         if($image_error > 0) 
         {
@@ -154,13 +183,28 @@
                 $error['img_cin'] = " <span class='font-12'>Le type d'image doit etre en jpg, jpeg, ou bien png !</span>";
             }
 
+        //---------------- get image file extension cin v
+        if($image_error > 0) 
+        {
+            $error['img_cin_v'] = " <span class='font-12 col-red'>Vous n'avez pas insérer une images !!</span>";
+        } else if(!(($img_cin_v_type == "image/gif") ||
+                ($img_cin_v_type == "image/jpeg") ||
+                ($img_cin_v_type == "image/jpg") ||
+                ($img_cin_v_type == "image/x-png") ||
+                ($img_cin_v_type == "image/png") ||
+                ($img_cin_v_type == "image/pjpeg")) &&
+            !(in_array($extension_cin_v, $allowedExts)))
+            {
+                $error['img_cin_v'] = " <span class='font-12'>Le type d'image doit etre en jpg, jpeg, ou bien png !</span>";
+            }
+
         //---------------- get image file extension cin
         if($image_error > 0) 
         {
             $error['img_relever'] = " <span class='font-12 col-red'>Vous n'avez pas insérer une images !!</span>";
         } else if(!(($img_relever_type == "image/gif") ||
                 ($img_relever_type == "image/jpeg") ||
-                ($img_img_relever_typecin_type == "image/jpg") ||
+                ($img_relever_type == "image/jpg") ||
                 ($img_relever_type == "image/x-png") ||
                 ($img_relever_type == "image/png") ||
                 ($img_relever_type == "image/pjpeg")) &&
@@ -229,10 +273,20 @@
                 $img_bac_up = $nom_fr."_".$prenon_fr."_".date("Y-m-d").".".$extension_bac;
                 $upload = move_uploaded_file($_FILES['img_bac']['tmp_name'], 'upload/bac/'.$img_bac_up);
 
+                // create random image file name bac v
+                $file = preg_replace("/\s+/", "_", $_FILES['img_bac_v']['name']);
+                $img_bac_v_up = $nom_fr."_".$prenon_fr."_verso_".date("Y-m-d").".".$extension_bac_v;
+                $upload = move_uploaded_file($_FILES['img_bac_v']['tmp_name'], 'upload/bac/'.$img_bac_v_up);
+
                 // create random image file name cin
                 $file = preg_replace("/\s+/", "_", $_FILES['img_cin']['name']);
                 $img_cin_up = $nom_fr."_".$prenon_fr."_".date("Y-m-d").".".$extension_cin;
                 $upload = move_uploaded_file($_FILES['img_cin']['tmp_name'], 'upload/cin/'.$img_cin_up);
+
+                // create random image file name cin
+                $file = preg_replace("/\s+/", "_", $_FILES['img_cin_v']['name']);
+                $img_cin_v_up = $nom_fr."_".$prenon_fr."_verso_".date("Y-m-d").".".$extension_cin_v;
+                $upload = move_uploaded_file($_FILES['img_cin_v']['tmp_name'], 'upload/cin/'.$img_cin_v_up);
 
                 // create random image file name relever
                 $file = preg_replace("/\s+/", "_", $_FILES['img_relever']['name']);
@@ -271,19 +325,21 @@
                 serie_bac,
                 montion_bac,
                 img_bac,
+                img_bac_v,
                 img_cin,
+                img_cin_v,
                 img_relever,
                 img_etudiant,
                 img_entissab,
                 terms,
                 section
-                ) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                ) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
             $stmt = $connect->stmt_init();
             if($stmt->prepare($sql_query)) 
             {    
                 // Bind your variables to replace the ?s
-                $stmt->bind_param('ssssssssssssssssssssssssss', 
+                $stmt->bind_param('ssssssssssssssssssssssssssss', 
                         $id_account, 
                         $nom_fr, 
                         $prenon_fr, 
@@ -304,7 +360,9 @@
                         $serie_bac,
                         $montion_bac,
                         $img_bac_up,
+                        $img_bac_v_up,
                         $img_cin_up,
+                        $img_cin_v_up,
                         $img_relever_up,
                         $img_etudiant_up,
                         $img_entissab_up,
@@ -320,10 +378,10 @@
             
             if ($result) 
             {
-                $error['add_radio'] = "<br><div class='alert alert-info'>Votre Inscription est ajoutée avec succès ...</div>";
+                $error['add_radio'] = "<br><div class='alert alert-info'>Votre inscription est ajoutée avec succès ...</div>";
                 header("location: dashboard.php");
             } else {
-                $error['add_radio'] = "<br><div class='alert alert-danger'>Échec de l'inscription Veuillez Réeseyer ultérierement</div>";
+                $error['add_radio'] = "<br><div class='alert alert-danger'>Échec de l'inscription veuillez réessayer ultérierement</div>";
             }
         }else
         {
@@ -1361,7 +1419,7 @@
 
                                     
                                     <div class="col-sm-6">
-                                        <div class="font-12">Bacalauriat</div>
+                                        <div class="font-12">Bacalauriat (Recto)</div>
                                         <br>
                                         <div class="form-group">
                                                 <input type="file" name="img_bac" id="img_bac" class="dropify-image" data-max-file-size="5M" data-allowed-file-extensions="jpg jpeg png gif" required/>
@@ -1370,7 +1428,16 @@
                                     </div>
 
                                     <div class="col-sm-6">
-                                        <div class="font-12">Carte d'Identité Nationale</div>
+                                        <div class="font-12">Bacalauriat (Verso)</div>
+                                        <br>
+                                        <div class="form-group">
+                                                <input type="file" name="img_bac_v" id="img_bac_v" class="dropify-image" data-max-file-size="5M" data-allowed-file-extensions="jpg jpeg png gif" required/>
+                                                <div class="div-error"><?php echo isset($error['img_bac_v']) ? $error['img_bac_v'] : '';?></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="font-12">Carte d'Identité Nationale (Recto)</div>
                                         <br>
                                         <div class="form-group">
                                                 <input type="file" name="img_cin" id="img_cin" class="dropify-image" data-max-file-size="5M" data-allowed-file-extensions="jpg jpeg png gif" required/>
@@ -1379,13 +1446,14 @@
                                     </div>
 
                                     <div class="col-sm-6">
-                                        <div class="font-12">Relever de note (Optionel )</div>
+                                        <div class="font-12">Carte d'Identité Nationale (Verso)</div>
                                         <br>
                                         <div class="form-group">
-                                                <input type="file" name="img_relever" id="img_relever" class="dropify-image" data-max-file-size="5M" data-allowed-file-extensions="jpg jpeg png gif"/>
-                                                <div class="div-error"><?php echo isset($error['img_relever']) ? $error['img_relever'] : '';?></div>
+                                                <input type="file" name="img_cin_v" id="img_cin_v" class="dropify-image" data-max-file-size="5M" data-allowed-file-extensions="jpg jpeg png gif" required/>
+                                                <div class="div-error"><?php echo isset($error['img_cin_v']) ? $error['img_cin_v'] : '';?></div>
                                         </div>
                                     </div>
+
 
                                     <div class="col-sm-6">
                                         <div class="font-12">Photo </div>
@@ -1402,6 +1470,15 @@
                                         <div class="form-group">
                                                 <input type="file" name="img_entissab" id="img_entissab" class="dropify-image" data-max-file-size="5M" data-allowed-file-extensions="jpg jpeg png gif" required/>
                                                 <div class="div-error"><?php echo isset($error['img_entissab']) ? $error['img_entissab'] : '';?></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="font-12">Relever de note du bac ( Optionel )</div>
+                                        <br>
+                                        <div class="form-group">
+                                                <input type="file" name="img_relever" id="img_relever" class="dropify-image" data-max-file-size="5M" data-allowed-file-extensions="jpg jpeg png gif"/>
+                                                <div class="div-error"><?php echo isset($error['img_relever']) ? $error['img_relever'] : '';?></div>
                                         </div>
                                     </div>
 
