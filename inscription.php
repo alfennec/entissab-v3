@@ -13,7 +13,8 @@
         <meta name="description" content="Application d'inscription des nouveaux bachelier pour l'année 2020/2021 | Faculté Des Sciences Oujda">
         <meta name="keywords" content="Application d'inscription des nouveaux bachelier pour l'année 2020/2021 | Faculté Des Sciences Oujda">
         <title>Application d'inscription des nouveaux bachelier pour l'année 2020/2021</title>
-        <link rel="icon" href="assets/images/favicon.png" type="image/x-icon">
+        <link rel="icon" href="images/favicon.png" type="image/x-icon">
+
 
         <!-- Google Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
