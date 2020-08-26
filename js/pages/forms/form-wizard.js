@@ -1,13 +1,13 @@
-$(function () {
+$(function() {
     //Horizontal form basic
     $('#wizard_horizontal').steps({
         headerTag: 'h2',
         bodyTag: 'section',
         transitionEffect: 'slideLeft',
-        onInit: function (event, currentIndex) {
+        onInit: function(event, currentIndex) {
             setButtonWavesEffect(event);
         },
-        onStepChanged: function (event, currentIndex, priorIndex) {
+        onStepChanged: function(event, currentIndex, priorIndex) {
             setButtonWavesEffect(event);
         }
     });
@@ -18,10 +18,10 @@ $(function () {
         bodyTag: 'section',
         transitionEffect: 'slideLeft',
         stepsOrientation: 'vertical',
-        onInit: function (event, currentIndex) {
+        onInit: function(event, currentIndex) {
             setButtonWavesEffect(event);
         },
-        onStepChanged: function (event, currentIndex, priorIndex) {
+        onStepChanged: function(event, currentIndex, priorIndex) {
             setButtonWavesEffect(event);
         }
     });
@@ -32,7 +32,7 @@ $(function () {
         headerTag: 'h3',
         bodyTag: 'fieldset',
         transitionEffect: 'slideLeft',
-        onInit: function (event, currentIndex) {
+        onInit: function(event, currentIndex) {
             $.AdminBSB.input.activate();
 
             //Set tab width
@@ -43,7 +43,7 @@ $(function () {
             //set button waves effect
             setButtonWavesEffect(event);
         },
-        onStepChanging: function (event, currentIndex, newIndex) {
+        onStepChanging: function(event, currentIndex, newIndex) {
             if (currentIndex > newIndex) { return true; }
 
             if (currentIndex < newIndex) {
@@ -54,29 +54,58 @@ $(function () {
             form.validate().settings.ignore = ':disabled,:hidden';
             return form.valid();
         },
-        onStepChanged: function (event, currentIndex, priorIndex) {
+        onStepChanged: function(event, currentIndex, priorIndex) {
             setButtonWavesEffect(event);
         },
-        onFinishing: function (event, currentIndex) {
+        onFinishing: function(event, currentIndex) {
             form.validate().settings.ignore = ':disabled';
             return form.valid();
         },
-        onFinished: function (event, currentIndex) {
-            swal("Vous venez de saisir tout les informations correctement", "Cliquez sur valider votre insciption, pour continuer !", "success");
+        onFinished: function(event, currentIndex) {
+            //swal("Vous venez de saisir tout les informations correctement", "Cliquez sur valider votre insciption, pour continuer !", "success");
 
-           /********************************* here my work gonna be */
-           $("#btn2").fadeIn();
+            /********************************* here my work gonna be */
+            //$("#btn2").fadeIn();
+
+            //alert('in validation');
+
+            //e.preventDefault();
+
+            //$(".page-loader-wrapper").fadeIn();
+
+            var form = $(this);
+            var url = form.attr('action');
+
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: form.serialize(), // serializes the form's elements.
+                success: function(data) {
+                    alert(data); // show response from the php script.
+                }
+            });
+
+            /*$.ajax({
+                type: 'post',
+                url: 'post.php',
+                data: $('form').serialize(),
+                success: function() {
+                    alert('form was submitted');
+                }
+            });*/
+
+
         }
     });
 
     form.validate({
-        highlight: function (input) {
+        highlight: function(input) {
             $(input).parents('.form-line').addClass('error');
         },
-        unhighlight: function (input) {
+        unhighlight: function(input) {
             $(input).parents('.form-line').removeClass('error');
         },
-        errorPlacement: function (error, element) {
+        errorPlacement: function(error, element) {
             $(element).parents('.form-group').append(error);
         },
         rules: {
